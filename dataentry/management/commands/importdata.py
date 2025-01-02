@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.db import DataError
 from dataentry.models import Subscriber
 from django.apps import apps
 import csv
@@ -28,10 +29,21 @@ class Command(BaseCommand):
 
         if not model:
             raise CommandError(f'Model "{model_name}" not found in any app!')
+        
+        # Compare csv headers with model's field names
+        # Get all the field names of the modek that we found
+        model_fields=[field.name for field in model._meta.fields if field.name != 'id']
+        print(model_fields)
 
 
         with open(file_path, 'r') as file:
             reader=csv.DictReader(file)
+            csv_header=reader.fieldnames
+
+            # Compare csv header with model's field names
+            if csv_header != model_fields:
+                raise DataError(f"CSV file doesn't match with the {model_name} table fields.")
+
             for row in reader:
                 email=row['email']
                 existing_record=model.objects.filter(email=email).exists()

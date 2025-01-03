@@ -1,7 +1,7 @@
 from django.apps import apps
 
 def get_all_custom_models():
-    default_models=['LogEntry', 'Permission', 'Group', 'User', 'ContentType', 'Session', 'Upload', 'Model1', 'Model2']
+    default_models=['LogEntry', 'Permission', 'Group', 'User', 'ContentType', 'Session', 'Upload', 'Model1', 'Model2', 'List', 'Subscriber', 'Email']
     # Try to get all the apps
     custom_models=[]
     for model in apps.get_models():

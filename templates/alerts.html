@@ -1,7 +1,82 @@
-{% if messages %}
-<div class="messages">
-    {% for message in messages %}
-    <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
-    {% endfor %}
+<!-- HTML: Message Alert Container -->
+<div class="alert-container">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-popup alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
 </div>
-{% endif %}
+
+<!-- CSS: Add styling for popup effect -->
+<style>
+  .alert-container {
+    position: relative;
+  }
+
+  .alert-popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #f44336; /* Red background by default (change as needed) */
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    animation: fadeInOut 5s ease-in-out forwards;
+    z-index: 1000;
+  }
+
+  /* Animation for fade-in and fade-out */
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+      top: 0;
+    }
+    20% {
+      opacity: 1;
+      top: 20px;
+    }
+    80% {
+      opacity: 1;
+      top: 20px;
+    }
+    100% {
+      opacity: 0;
+      top: 0;
+    }
+  }
+
+  /* Example color classes based on message type */
+  .alert-info {
+    background-color: #2196F3;
+  }
+
+  .alert-success {
+    background-color: #4CAF50;
+  }
+
+  .alert-warning {
+    background-color: #FF9800;
+  }
+
+  .alert-danger {
+    background-color: #f44336;
+  }
+</style>
+
+<!-- JavaScript: Optional for extra functionality -->
+<script>
+  // If you want to make sure the message disappears after the animation
+  window.onload = function() {
+    setTimeout(function() {
+      let alertMessages = document.querySelectorAll('.alert-popup');
+      alertMessages.forEach(function(alert) {
+        alert.style.opacity = '0';
+      });
+    }, 5000); // Set to match the animation time or longer for visibility
+  };
+</script>

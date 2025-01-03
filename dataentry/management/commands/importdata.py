@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.db import DataError
-from dataentry.models import Subscriber
 from django.apps import apps
 import csv
 # Proposed command: python manage.py importdata file_path model_name

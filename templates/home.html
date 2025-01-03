@@ -1,12 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automate</title>
-</head>
-<body>
-    <h3>Homepage</h3>
-    
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card-container" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; width: 100%; padding: 10px 0;">
+    <a href="{% url 'import_data' %}" class="remove-underline">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Import Data</div>
+            <div class="card-body">
+              <h6 class="card-title">Imports data into the data tables.</h6>
+            </div>
+        </div>
+    </a>
+    <a href="" class="remove-underline">
+        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-header">Send Emails</div>
+            <div class="card-body">
+              <h6 class="card-title">Sends bulk emails to thousands.</h6>
+            </div>
+        </div>
+    </a>
+    <a href="" class="remove-underline">
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-header">Track Emails</div>
+            <div class="card-body">
+              <h6 class="card-title">Tracks email open or click count.</h6>
+            </div>
+        </div>
+    </a>
+  </div>  
+{% endblock %}
